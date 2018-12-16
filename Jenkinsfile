@@ -7,7 +7,7 @@ node('docker') {
             env.ISTAG = isTag()
             echo "Tag = ${env.ISTAG}"
         }
-        catch {
+        catch(Exception e) {
             echo "could not read git version! Make sure that you do not make a shallow clone only..."
         }
     }
