@@ -9,6 +9,9 @@ A small footprint Docker image with devpi client installed intended to upload Py
 
 Change-Log
 ----------
+##### 1.0.1
+* fixed catch in jenkinsfile
+
 ##### 1.0.0
 * added a good error message for shallow clones
 * test for tag through string in jenkinsfile
