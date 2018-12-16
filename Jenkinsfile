@@ -33,7 +33,7 @@ node('docker') {
             usernamePassword(credentialsId: 'docker public', 
             usernameVariable: 'USERNAME', 
             passwordVariable: 'PASSWORD')]) {
-            def builtImage = docker.build("${USERNAME}/docker-alpine-devpi-client",".")
+            def builtImage = docker.build("${USERNAME}/alpine-devpi-client",".")
         }
     }
 
@@ -43,7 +43,7 @@ node('docker') {
                 usernamePassword(credentialsId: 'docker public', 
                 usernameVariable: 'USERNAME', 
                 passwordVariable: 'PASSWORD')]) {
-                    def builtImage = docker.build("${USERNAME}/docker-alpine-devpi-client",".")
+                    def builtImage = docker.build("${USERNAME}/alpine-devpi-client",".")
                     builtImage.push()
                 }
         }

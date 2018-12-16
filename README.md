@@ -24,7 +24,7 @@ git clone git@github.com:toschoch/docker-alpine-devpi-client.git
 build the docker image
 
 ```bash
-docker build . -t docker-alpine-devpi-client
+docker build . -t alpine-devpi-client
 ```
 
 Example
@@ -33,5 +33,5 @@ Example
 run a container of the image
 
 ```bash
-docker run docker-alpine-devpi-client devpi use ...
+docker run alpine-devpi-client devpi use ...
 ```
