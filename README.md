@@ -18,7 +18,7 @@ Installation / Usage
 clone the repo:
 
 ```bash
-git clone <git-url>
+git clone git@github.com:toschoch/docker-alpine-devpi-client.git
 ```
 
 build the docker image
