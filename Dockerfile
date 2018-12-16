@@ -4,4 +4,4 @@ RUN pip install devpi-client
 
 USER root
 
-ENTRYPOINT [ "/bin/sh"]
+CMD [ "ash"]
