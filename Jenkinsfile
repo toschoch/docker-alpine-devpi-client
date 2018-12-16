@@ -61,7 +61,7 @@ def isTag() {
     commit = getCommit()
     if (commit) {
         desc = gitDescription()
-        match = desc =~ /.+-[0-9]+-g[0-9A-Fa-f]{6,}$/
+        match = (desc =~ /.+-[0-9]+-g[0-9A-Fa-f]{6,}$/)
         result = !match
         match = null
         return result
