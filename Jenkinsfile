@@ -1,10 +1,15 @@
 node('docker') {
     stage('Checkout') {
         checkout scm
-        env.VERSION = gitVersion()
-        println("Version = ${env.VERSION}")
-        env.ISTAG = isTag()
-        println("Tag = ${env.ISTAG}")
+        try { 
+            env.VERSION = gitVersion()
+            echo "Version = ${env.VERSION}"
+            env.ISTAG = isTag()
+            echo "Tag = ${env.ISTAG}"
+        }
+        catch {
+            echo "could not read git version! Make sure that you do not make a shallow clone only..."
+        }
     }
 
     stage('Image Name') {
@@ -15,7 +20,7 @@ node('docker') {
             def imageName = "${USERNAME}/alpine-devpi-client"
             env.DOCKERIMAGENAME = (env.ISTAG=="true") ? "${imageName}:${env.VERSION}" : "${imageName}"
         }
-        println("Docker Image = ${env.DOCKERIMAGENAME}")
+        echo "Docker Image = ${env.DOCKERIMAGENAME}"
     }
     
     stage('Build Image') {
@@ -34,8 +39,12 @@ def getCommit() {
     return sh(script: 'git rev-parse HEAD', returnStdout: true)?.trim()
 }
 
+def gitDescription() {
+    return sh(script: "git describe --tags --long --dirty", returnStdout: true)?.trim()
+}
+
 def gitVersion() {
-    desc = sh(script: "git describe --tags --long --dirty", returnStdout: true)?.trim()
+    desc = gitDescription()
     parts = desc.split('-')
     assert parts.size() in [3, 4]
     dirty = (parts.size() == 4)
@@ -51,7 +60,7 @@ def gitVersion() {
 def isTag() {
     commit = getCommit()
     if (commit) {
-        desc = sh(script: "git describe --tags --long ${commit}", returnStdout: true)?.trim()
+        desc = gitDescription()
         match = desc =~ /.+-[0-9]+-g[0-9A-Fa-f]{6,}$/
         result = !match
         match = null
