@@ -9,6 +9,16 @@ A small footprint Docker image with devpi client installed intended to upload Py
 
 Change-Log
 ----------
+##### 1.0.0
+* added a good error message for shallow clones
+* test for tag through string in jenkinsfile
+* added tags in Jenkinsfile
+* make really general purpose devpi-client
+* made image more general purpose with entrypoint and cmd
+* removed redundant docker from image name
+* update readme
+* initial docker image with python3 and devpi-client
+
 
 ##### 0.0.1
 * initial version
