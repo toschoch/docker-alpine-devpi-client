@@ -9,6 +9,9 @@ A small footprint Docker image with devpi client installed intended to upload Py
 
 Change-Log
 ----------
+##### 1.0.2
+* regex in jenkinsfile
+
 ##### 1.0.1
 * fixed catch in jenkinsfile
 
