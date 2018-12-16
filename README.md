@@ -33,5 +33,5 @@ Example
 run a container of the image
 
 ```bash
-docker run alpine-devpi-client devpi use ...
+docker run alpine-devpi-client use ...
 ```
