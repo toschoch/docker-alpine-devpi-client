@@ -58,13 +58,12 @@ def gitVersion() {
 }
 
 def isTag() {
-    commit = getCommit()
-    if (commit) {
-        desc = gitDescription()
-        match = (desc =~ /.+-[0-9]+-g[0-9A-Fa-f]{6,}$/)
-        result = !match
-        match = null
-        return result
-    }
-    return false
+    desc = gitDescription()
+    parts = desc.split('-')
+    assert parts.size() in [3, 4]
+    dirty = (parts.size() == 4)
+    tag = parts[0]
+    count = parts[1]
+    sha = parts[2]
+    return (count == '0' && !dirty)
 }
