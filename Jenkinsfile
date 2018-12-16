@@ -1,4 +1,4 @@
-node('docker'&&'amd64') {
+node('docker') {
     stage('Checkout') {
         checkout scm
         try { 
