@@ -2,9 +2,9 @@ node('docker') {
     stage('Checkout') {
         checkout scm
         env.VERSION = gitVersion()
-        echo "Version = ${env.VERSION}"
+        println("Version = ${env.VERSION}")
         env.ISTAG = isTag()
-        echo "Tag = ${env.ISTAG}"
+        println("Tag = ${env.ISTAG}")
     }
 
     stage('Image Name') {
@@ -13,9 +13,9 @@ node('docker') {
             usernameVariable: 'USERNAME', 
             passwordVariable: 'PASSWORD')]) {
             def imageName = "${USERNAME}/alpine-devpi-client"
-            env.DOCKERIMAGENAME = env.ISTAG ? "${imageName}:${env.VERSION}" : "${imageName}"
+            env.DOCKERIMAGENAME = (env.ISTAG=="true") ? "${imageName}:${env.VERSION}" : "${imageName}"
         }
-        echo "Docker Image = ${env.DOCKERIMAGENAME}"
+        println("Docker Image = ${env.DOCKERIMAGENAME}")
     }
     
     stage('Build Image') {
