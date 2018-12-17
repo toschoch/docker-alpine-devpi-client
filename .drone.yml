@@ -1,12 +1,57 @@
 kind: pipeline
-name: default
+name: amd64
+
+platform:
+  os: linux
+  arch: amd64
 
 steps:
 - name: docker  
   image: plugins/docker
   settings:
     repo: shocki/alpine-devpi-client
+    auto_tag: true
+    auto_tag_suffix: linux-amd64
     username:
       from_secret: docker_username
     password:
       from_secret: docker_password
+---
+kind: pipeline
+name: arm
+
+platform:
+  os: linux
+  arch: arm
+  variant: armv7l
+
+steps:
+- name: docker  
+  image: plugins/docker
+  settings:
+    repo: shocki/alpine-devpi-client
+    auto_tag: true
+    auto_tag_suffix: linux-arm
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+---
+kind: pipeline
+name: multi arch image
+
+steps:
+- name: manifest
+  image: plugins/manifest
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    target: shocki/alpine-devpi-client:latest
+    template: shocki/alpine-devpi-client:OS-ARCH
+    platforms:
+      - linux/amd64
+      - linux/arm
+      - linux/arm64
