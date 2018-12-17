@@ -26,7 +26,7 @@ platform:
 
 steps:
 - name: docker  
-  image: plugins/docker
+  image: plugins/docker:linux-arm
   settings:
     repo: shocki/alpine-devpi-client
     auto_tag: true
