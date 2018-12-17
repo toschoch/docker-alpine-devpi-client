@@ -22,7 +22,7 @@ name: build-arm
 
 platform:
   os: linux
-  arch: armv7l
+  arch: arm
 
 steps:
 - name: docker  
