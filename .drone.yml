@@ -6,7 +6,7 @@ platform:
   arch: amd64
 
 steps:
-- name: docker  
+- name: docker-amd64  
   image: plugins/docker
   settings:
     repo: shocki/alpine-devpi-client
@@ -25,7 +25,7 @@ platform:
   arch: arm
 
 steps:
-- name: docker  
+- name: docker-arm  
   image: plugins/docker
   settings:
     repo: shocki/alpine-devpi-client
@@ -59,6 +59,6 @@ steps:
      - success
 
   depends_on:
-   - build-arm
-   - build-amd64
+   - docker-arm
+   - docker-amd64
 
