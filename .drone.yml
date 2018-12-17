@@ -1,5 +1,5 @@
 kind: pipeline
-name: amd64
+name: build-amd64
 
 platform:
   os: linux
@@ -18,12 +18,11 @@ steps:
       from_secret: docker_password
 ---
 kind: pipeline
-name: arm
+name: build-arm
 
 platform:
   os: linux
-  arch: arm
-  variant: armv7l
+  arch: armv7l
 
 steps:
 - name: docker  
@@ -39,7 +38,7 @@ steps:
 
 ---
 kind: pipeline
-name: multi arch image
+name: publish-manifest
 
 steps:
 - name: manifest
@@ -54,4 +53,12 @@ steps:
     platforms:
       - linux/amd64
       - linux/arm
+
+  trigger:
+    status:
+     - success
+
+  depends_on:
+   - build-arm
+   - build-amd64
 
