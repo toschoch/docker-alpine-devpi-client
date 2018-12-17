@@ -50,8 +50,8 @@ steps:
     password:
       from_secret: docker_password
     target: shocki/alpine-devpi-client:latest
-    template: shocki/alpine-devpi-client:OS-ARCH
+    template: shocki/alpine-devpi-client:latest-OS-ARCH
     platforms:
       - linux/amd64
       - linux/arm
-      - linux/arm64
+
