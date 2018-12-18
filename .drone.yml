@@ -53,6 +53,7 @@ steps:
     platforms:
       - linux/amd64
       - linux/arm
+    ignore_missing: true
 
 trigger:
   status:
