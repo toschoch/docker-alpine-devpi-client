@@ -48,7 +48,7 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-    target: shocki/alpine-devpi-client
+    target: shocki/alpine-devpi-client:latest
     template: shocki/alpine-devpi-client:OS-ARCH
     platforms:
       - linux/amd64
