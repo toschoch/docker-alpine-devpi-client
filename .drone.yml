@@ -7,7 +7,7 @@ platform:
 
 steps:
 - name: docker  
-  image: plugins/docker
+  image: plugins/docker:1
   settings:
     repo: shocki/alpine-devpi-client
     auto_tag: true
@@ -42,7 +42,7 @@ name: publish-manifest
 
 steps:
 - name: manifest
-  image: plugins/manifest
+  image: plugins/manifest:1
   settings:
     username:
       from_secret: docker_username
@@ -50,9 +50,7 @@ steps:
       from_secret: docker_password
     target: shocki/alpine-devpi-client:latest
     template: shocki/alpine-devpi-client:OS-ARCH
-    platforms:
-      - linux/amd64
-      - linux/arm
+    platforms: linux/amd64,linux/arm
     ignore_missing: true
 
 trigger:
