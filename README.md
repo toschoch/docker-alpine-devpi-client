@@ -46,11 +46,22 @@ build the docker image
 docker build . -t alpine-devpi-client
 ```
 
+Drone
+-----
+
+build and deploy with drone-cli
+
+set `DRONE_SERVER` and `DRONE_TOKEN` according to your drone server
+
+```bash
+drone exec --secret-file .secrets
+```
+
 Example
 -------
 
 run a container of the image
 
 ```bash
-docker run alpine-devpi-client devpi use ...
+docker run -it --rm alpine-devpi-client devpi use ...
 ```
